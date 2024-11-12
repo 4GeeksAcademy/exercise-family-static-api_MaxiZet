@@ -34,10 +34,9 @@ def get_members():
 @app.route('/member/<int:id>', methods=['GET'])
 def get_member_by_id(id):
 
-    members = jackson_family.get_all_members()
-    for people in members: 
-        if id == people.get("id"):
-            return jsonify(people), 200
+    member = jackson_family.get_member(id) 
+    if member != None:
+            return jsonify(member), 200
     return jsonify({"msj": "not found"}), 404
 
 @app.route('/member/<int:id>', methods=['DELETE'])
